@@ -40,13 +40,6 @@ RUN wget https://github.com/tmux/tmux/releases/download/3.4/tmux-3.4.tar.gz \
     && cd .. \
     && rm -rf tmux-3.4 tmux-3.4.tar.gz
 
-# Setup system optimizations
-RUN sysctl -w net.ipv4.ping_group_range="0 2147483647" \
-    && sysctl -w net.core.rmem_max=26214400 \
-    && sysctl -w net.core.wmem_max=26214400 \
-    && sysctl -w net.ipv4.tcp_rmem='4096 87380 26214400' \
-    && sysctl -w net.ipv4.tcp_wmem='4096 87380 26214400'
-
 # Create a virtual environment and install Flask
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
