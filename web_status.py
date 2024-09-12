@@ -9,7 +9,8 @@ app = Flask(__name__)
 
 tmate_url = None
 tmate_process = None
-PASSWORD_HASH = hashlib.sha256(b"your_password_here").hexdigest()  # Thay "your_password_here" bằng mật khẩu thực
+PASSWORD_HASH = hashlib.sha256(b"hieuxyz2009").hexdigest()
+UPLOAD_FOLDER = '/home/ubuntu'
 
 def set_process_name(name):
     import ctypes
@@ -49,6 +50,11 @@ def home():
             <input type="submit" name="action" value="View URL">
             <input type="submit" name="action" value="New Session">
         </form>
+        <h2>File Upload</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
     </body>
     </html>
     ''')
@@ -69,8 +75,20 @@ def tmate_action():
         threading.Thread(target=run_tmate).start()
         return 'New tmate session started. Please wait a moment and then view the URL.', 202
 
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return 'Không có file nào được chọn'
+    file = request.files['file']
+    if file.filename == '':
+        return 'Không có file nào được chọn'
+    if file:
+        filename = os.path.join(UPLOAD_FOLDER, file.filename)
+        file.save(filename)
+        return f'File {file.filename} đã được upload thành công'
+
 if __name__ == '__main__':
-    set_process_name("critical_process")  # Đặt tên cho quá trình để bảo vệ nó
+    set_process_name("critical_process")
     tmate_thread = threading.Thread(target=run_tmate)
     tmate_thread.start()
     app.run(host='0.0.0.0', port=80)
