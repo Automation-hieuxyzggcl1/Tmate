@@ -28,8 +28,17 @@ RUN apt-get update && apt-get install -y \
     libncurses5-dev \
     bison \
     iputils-ping \
+    unzip \
+    unrar \
+    language-pack-vi \
+    fonts-vietnamese \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata
+
+RUN locale-gen vi_VN.UTF-8
+RUN update-locale LANG=vi_VN.UTF-8
+
+RUN export LANG=vi_VN.UTF-8
 
 # Install latest tmux
 RUN wget https://github.com/tmux/tmux/releases/download/3.4/tmux-3.4.tar.gz \
@@ -55,9 +64,12 @@ RUN mkdir -p /root/.config/ngrok && echo "version: \"2\"" > /root/.config/ngrok/
 
 RUN mkdir -p /home/ubuntu/.config/ngrok && echo "version: \"2\"" > /root/.config/ngrok/ngrok.yml
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
 COPY web_status.py /web_status.py
+COPY wine.sh /wine.sh
+
+RUN bash wine.sh
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80
 
