@@ -54,7 +54,7 @@ RUN wget https://github.com/tmux/tmux/releases/download/3.4/tmux-3.4.tar.gz \
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-RUN pip3 install flask psutil schedule Pillow requests aiohttp numpy moviepy opencv-python-headless python-dotenv discord.py deep_translator pexpect cryptography qrcode openpyxl
+RUN pip3 install flask psutil schedule Pillow requests aiohttp numpy moviepy opencv-python-headless python-dotenv discord.py deep_translator pexpect cryptography qrcode openpyxl stem configparser
 
 # Cài đặt ngrok
 RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && \
@@ -67,6 +67,7 @@ RUN mkdir -p /home/ubuntu/.config/ngrok && echo "version: \"2\"" > /root/.config
 
 COPY web_status.py /web_status.py
 COPY wine.sh /wine.sh
+COPY start.sh /start.sh
 
 RUN bash wine.sh
 
@@ -74,4 +75,4 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80
 
-CMD ["python3", "web_status.py"]
+CMD ["bash", "run.sh"]
