@@ -67,7 +67,7 @@ RUN mkdir -p /home/ubuntu/.config/ngrok && echo "version: \"2\"" > /root/.config
 
 COPY web_status.py /web_status.py
 COPY wine.sh /wine.sh
-COPY start.sh /start.sh
+COPY run.sh /run.sh
 
 RUN bash wine.sh
 
