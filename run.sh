@@ -1,2 +1,2 @@
-python3 web_status.py &
-rm wine.sh web_status.py run.sh
+rm wine.sh run.sh
+python3 web_status.py
