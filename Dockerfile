@@ -28,8 +28,13 @@ RUN apt-get update && apt-get install -y \
     libncurses5-dev \
     bison \
     iputils-ping \
+    lynx \
+    zip \
     unzip \
     unrar \
+    genisoimage \
+    xz-utils \
+    qemu-system-x86 \
     tor \
     torsocks \
     language-pack-vi \
@@ -54,8 +59,9 @@ RUN wget https://github.com/tmux/tmux/releases/download/3.4/tmux-3.4.tar.gz \
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-RUN pip3 install flask psutil schedule Pillow requests aiohttp numpy moviepy opencv-python-headless python-dotenv discord.py deep_translator pexpect cryptography qrcode openpyxl stem configparser
+RUN pip3 install flask psutil schedule Pillow requests aiohttp numpy moviepy opencv-python-headless python-dotenv discord.py deep_translator pexpect cryptography qrcode openpyxl stem configparser cloudscraper selenium webdriver_manager playwright beautifulsoup4 fake-useragent PySocks pyppeteer pyppeteer_stealth pycryptodome pyfiglet pyDes
 
+RUN playwright install chromium
 # Cài đặt ngrok
 RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && \
     echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | tee /etc/apt/sources.list.d/ngrok.list && \
