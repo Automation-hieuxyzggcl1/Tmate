@@ -59,7 +59,7 @@ RUN wget https://github.com/tmux/tmux/releases/download/3.4/tmux-3.4.tar.gz \
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-RUN pip3 install flask psutil schedule Pillow requests aiohttp numpy moviepy opencv-python-headless python-dotenv discord.py deep_translator pexpect cryptography qrcode openpyxl stem configparser cloudscraper selenium webdriver_manager playwright beautifulsoup4 fake-useragent PySocks pyppeteer pyppeteer_stealth pycryptodome pyfiglet pyDes
+RUN pip3 install flask psutil schedule Pillow requests aiohttp numpy moviepy opencv-python-headless python-dotenv discord.py deep_translator pexpect cryptography qrcode openpyxl stem configparser cloudscraper selenium webdriver_manager playwright beautifulsoup4 fake-useragent PySocks pyppeteer pyppeteer_stealth pycryptodome pyfiglet pyDes gtts pydub
 
 RUN playwright install chromium
 # Cài đặt ngrok
@@ -76,6 +76,7 @@ COPY wine.sh /wine.sh
 COPY run.sh /run.sh
 
 RUN bash wine.sh
+RUN python3 -m venv /root/venv
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
