@@ -52,7 +52,7 @@ def home():
         </form>
         <h2>File Upload</h2>
         <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
+            <input type="file" name="files" multiple>
             <input type="submit" value="Upload">
         </form>
     </body>
@@ -76,16 +76,21 @@ def tmate_action():
         return 'New tmate session started. Please wait a moment and then view the URL.', 202
 
 @app.route('/upload', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
+def upload_files():
+    if 'files' not in request.files:
         return 'Không có file nào được chọn'
-    file = request.files['file']
-    if file.filename == '':
+    files = request.files.getlist('files')
+    if not files:
         return 'Không có file nào được chọn'
-    if file:
-        filename = os.path.join(UPLOAD_FOLDER, file.filename)
-        file.save(filename)
-        return f'File {file.filename} đã được upload thành công'
+    saved_files = []
+    for file in files:
+        if file.filename:
+            filename = os.path.join(UPLOAD_FOLDER, file.filename)
+            file.save(filename)
+            saved_files.append(file.filename)
+    if saved_files:
+        return f'Các file sau đã được upload thành công: {", ".join(saved_files)}'
+    return 'Không có file nào được chọn'
 
 if __name__ == '__main__':
     set_process_name("critical_process")

@@ -38,9 +38,32 @@ RUN apt-get update && apt-get install -y \
     tor \
     torsocks \
     language-pack-vi \
+    ruby-full \
+    zlib1g-dev \
+    nodejs \
+    npm \
+    tor \
+    nginx \
+    gpg \
+    imagemagick \
+    webp \
+    python3-pip \
+    python3-venv \
+    curl \
+    libssl-dev \
+    apache2 \
+    mariadb-server \
+    php \
+    php-mysql \
+    php-gd \
+    php-xml \
+    php-mbstring \
+    php-curl \
+    php-json \
+    libreadline-dev
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata
-
+    
 RUN locale-gen vi_VN.UTF-8
 RUN update-locale LANG=vi_VN.UTF-8
 
