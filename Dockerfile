@@ -37,37 +37,19 @@ RUN apt-get update && apt-get install -y \
     qemu-system-x86 \
     tor \
     torsocks \
-    language-pack-vi \
     ruby-full \
     zlib1g-dev \
     nodejs \
     npm \
-    tor \
     nginx \
     gpg \
     imagemagick \
     webp \
-    python3-pip \
-    python3-venv \
     curl \
     libssl-dev \
-    apache2 \
-    mariadb-server \
-    php \
-    php-mysql \
-    php-gd \
-    php-xml \
-    php-mbstring \
-    php-curl \
-    php-json \
     libreadline-dev \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata
-    
-RUN locale-gen vi_VN.UTF-8
-RUN update-locale LANG=vi_VN.UTF-8
-
-RUN export LANG=vi_VN.UTF-8
 
 # Install latest tmux
 RUN wget https://github.com/tmux/tmux/releases/download/3.4/tmux-3.4.tar.gz \
