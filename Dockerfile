@@ -60,7 +60,7 @@ RUN apt-get update && apt-get install -y \
     php-mbstring \
     php-curl \
     php-json \
-    libreadline-dev
+    libreadline-dev \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata
     
