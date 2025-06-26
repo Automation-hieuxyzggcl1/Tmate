@@ -6,6 +6,7 @@ ENV TZ=Asia/Ho_Chi_Minh
 RUN apt-get update && apt-get install -y \
     openssh-server \
     openssh-client \
+    autossh \
     python3 \
     python3-pip \
     python3-venv \
