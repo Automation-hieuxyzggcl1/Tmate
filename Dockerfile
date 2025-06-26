@@ -5,6 +5,7 @@ ENV TZ=Asia/Ho_Chi_Minh
 
 RUN apt-get update && apt-get install -y \
     openssh-server \
+    openssh-client \
     python3 \
     python3-pip \
     python3-venv \
@@ -76,15 +77,25 @@ RUN mkdir -p /root/.config/ngrok && echo "version: \"2\"" > /root/.config/ngrok/
 
 RUN mkdir -p /home/ubuntu/.config/ngrok && echo "version: \"2\"" > /root/.config/ngrok/ngrok.yml
 
-COPY web_status.py /web_status.py
-#COPY wine.sh /wine.sh
-COPY run.sh /run.sh
+COPY web_status.py .
+#COPY wine.sh .
+COPY run.sh .
+
+COPY id_sf-lsd-segfault-net .
+COPY config .
 
 #RUN bash wine.sh
 RUN python3 -m venv /root/venv
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Cấp quyền thực thi cho tệp kịch bản khởi động
+RUN chmod +x run.sh
+
+# Mở cổng 80 để truy cập web
 EXPOSE 80
 
-CMD ["python3", "web_status.py"]
+# Chạy kịch bản khởi động khi container bắt đầu
+CMD ["./run.sh"]
+
+#CMD ["python3", "web_status.py"]
