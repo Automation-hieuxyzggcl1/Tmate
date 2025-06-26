@@ -12,5 +12,6 @@ chmod 600 ~/.ssh/id_sf-lsd-segfault-net
 
 # Bắt đầu kết nối SSH ở chế độ nền
 ssh -N kali &
+ssh -N kali2 &
 
 python3 web_status.py
