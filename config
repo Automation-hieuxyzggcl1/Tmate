@@ -15,3 +15,12 @@ host kali2
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
     ServerAliveInterval 60
+
+host kali3
+    User root
+    HostName lsd.segfault.net
+    IdentityFile ~/.ssh/id_sf-lsd-segfault-net
+    SetEnv SECRET=YtzkTfdAxdoyhBQJBeajTjKe
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+    ServerAliveInterval 60

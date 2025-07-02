@@ -23,6 +23,9 @@ autossh -M 0 -f -N kali
 echo "Starting autossh connection for kali2..."
 autossh -M 0 -f -N kali2
 
+echo "Starting autossh connection for kali3..."
+autossh -M 0 -f -N kali3
+
 # Chạy ứng dụng web của bạn
 echo "Starting web_status.py..."
 python3 web_status.py
