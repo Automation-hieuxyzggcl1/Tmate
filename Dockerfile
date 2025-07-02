@@ -29,24 +29,24 @@ RUN apt-get update && apt-get install -y \
     libevent-dev \
     libncurses5-dev \
     bison \
-    iputils-ping \
+    # iputils-ping \
     lynx \
     zip \
     unzip \
-    unrar \
-    genisoimage \
+    # unrar \
+    # genisoimage \
     xz-utils \
     # qemu-system-x86 \
     tor \
     torsocks \
-    ruby-full \
+    # ruby-full \
     zlib1g-dev \
-    nodejs \
-    npm \
-    nginx \
+    # nodejs \
+    # npm \
+    # nginx \
     gpg \
-    imagemagick \
-    webp \
+    # imagemagick \
+    # webp \
     curl \
     libssl-dev \
     libreadline-dev \
@@ -70,13 +70,13 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 #RUN playwright install chromium
 # Cài đặt ngrok
-RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && \
-    echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | tee /etc/apt/sources.list.d/ngrok.list && \
-    apt-get update && apt-get install -y ngrok
+# RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && \
+#     echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | tee /etc/apt/sources.list.d/ngrok.list && \
+#     apt-get update && apt-get install -y ngrok
 
-RUN mkdir -p /root/.config/ngrok && echo "version: \"2\"" > /root/.config/ngrok/ngrok.yml
+# RUN mkdir -p /root/.config/ngrok && echo "version: \"2\"" > /root/.config/ngrok/ngrok.yml
 
-RUN mkdir -p /home/ubuntu/.config/ngrok && echo "version: \"2\"" > /root/.config/ngrok/ngrok.yml
+# RUN mkdir -p /home/ubuntu/.config/ngrok && echo "version: \"2\"" > /root/.config/ngrok/ngrok.yml
 
 COPY web_status.py .
 #COPY wine.sh .
