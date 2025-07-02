@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
     tzdata \
     tmate \
-    speedtest-cli \
+    # speedtest-cli \
     build-essential \
     automake \
     pkg-config \
@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y \
     unrar \
     genisoimage \
     xz-utils \
-    qemu-system-x86 \
+    # qemu-system-x86 \
     tor \
     torsocks \
     ruby-full \
@@ -66,7 +66,7 @@ RUN wget https://github.com/tmux/tmux/releases/download/3.4/tmux-3.4.tar.gz \
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-RUN pip3 install flask Flask-Caching Werkzeug psutil schedule Pillow requests aiohttp numpy moviepy opencv-python-headless python-dotenv discord.py deep_translator pexpect cryptography qrcode openpyxl stem configparser cloudscraper selenium webdriver_manager playwright beautifulsoup4 fake-useragent PySocks pyppeteer pyppeteer_stealth pycryptodome pyfiglet pyDes gtts pydub SpeechRecognition pysrt undetected-chromedriver mistralai aider-chat aiofiles matplotlib
+# RUN pip3 install flask Flask-Caching Werkzeug psutil schedule Pillow requests aiohttp numpy moviepy opencv-python-headless python-dotenv discord.py deep_translator pexpect cryptography qrcode openpyxl stem configparser cloudscraper selenium webdriver_manager playwright beautifulsoup4 fake-useragent PySocks pyppeteer pyppeteer_stealth pycryptodome pyfiglet pyDes gtts pydub SpeechRecognition pysrt undetected-chromedriver mistralai aider-chat aiofiles matplotlib
 
 #RUN playwright install chromium
 # Cài đặt ngrok
